@@ -1,0 +1,92 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2026-02-14",
+  "description": "Master detection manifest for Model Context Protocol (MCP) clients and built-in tools.",
+  "platforms": {
+    "darwin": {
+      "clients": [
+        {
+          "name": "windsurf",
+          "exists_paths": ["~/.codeium"],
+          "config_paths": ["~/.codeium/windsurf/mcp_config.json"],
+          "skills_paths": ["~/.codeium/windsurf/skills"]
+        },
+        {
+          "name": "cursor",
+          "exists_paths": ["~/.cursor"],
+          "config_paths": ["~/.cursor/mcp.json"],
+          "skills_paths": ["~/.cursor/skills"]
+        },
+        {
+          "name": "vscode",
+          "exists_paths": ["~/.vscode"],
+          "config_paths": [
+            "~/Library/Application Support/Code/User/settings.json",
+            "~/Library/Application Support/Code/User/mcp.json"
+          ],
+          "skills_paths": ["~/.copilot/skills"]
+        },
+        {
+          "name": "claude",
+          "exists_paths": ["~/Library/Application Support/Claude"],
+          "config_paths": ["~/Library/Application Support/Claude/claude_desktop_config.json"],
+          "skills_paths": []
+        },
+        {
+          "name": "codex",
+          "exists_paths": ["~/.codex"],
+          "config_paths": ["~/.codex/config.toml"],
+          "skills_paths": ["~/.codex/skills"]
+        }
+      ]
+    },
+    "linux": {
+      "clients": [
+        {
+          "name": "windsurf",
+          "exists_paths": ["~/.codeium"],
+          "config_paths": ["~/.codeium/windsurf/mcp_config.json"],
+          "skills_paths": ["~/.codeium/windsurf/skills"]
+        },
+        {
+          "name": "vscode",
+          "exists_paths": ["~/.vscode", "~/.config/Code","~/.vscode/extensions","~/.vscode/extensions/openai.chatgpt*"],
+          "config_paths": [
+            "~/.config/Code - Insiders/User/settings.json",
+            "~/.config/Code/User/mcp.json",
+            "~/.config/Code/User/settings.json",
+            "~/.vscode/codex_mcp.json",
+            "~/.vscode/mcp.json",
+            "~/.vscode/mcp.json"
+          ],
+          "skills_paths": ["~/.copilot/skills"]
+        },
+        {
+          "name": "codex",
+          "exists_paths": ["~/.codex"],
+          "config_paths": ["~/.codex/config.toml"],
+          "skills_paths": ["~/.codex/skills"]
+        }
+      ]
+    },
+    "win32": {
+      "clients": [
+        {
+          "name": "claude",
+          "exists_paths": ["~/AppData/Roaming/Claude"],
+          "config_paths": ["~/AppData/Roaming/Claude/claude_desktop_config.json"],
+          "skills_paths": []
+        },
+        {
+          "name": "vscode",
+          "exists_paths": ["~/.vscode", "~/.config/Code","~/.vscode/extensions"],
+          "config_paths": [
+            "~/AppData/Roaming/Code/User/settings.json",
+            "~/AppData/Roaming/Code/User/mcp.json"
+          ],
+          "skills_paths": ["~/.copilot/skills"]
+        }
+      ]
+    }
+  }
+}

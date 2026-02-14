@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MCP Shadow Discovery</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background-color: #f4f6f8;
+        }
+        .card {
+            margin-top: 15px;
+        }
+        .loading {
+            font-weight: bold;
+            color: #007bff;
+        }
+        textarea {
+            width: 100%;
+            height: 300px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-4">
+
+    <h2 class="mb-4">🔍 MCP Shadow Discovery</h2>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="mainTabs">
+        <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#about">About</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#results">Results</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#config">Configuration</button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#advanced">Advanced</button>
+        </li>
+    </ul>
+
+    <div class="tab-content mt-3">
+
+        <!-- ================= TAB 1 ================= -->
+        <div class="tab-pane fade show active" id="about">
+
+            <div class="card p-3">
+                <h4>About This Tool</h4>
+                <p>
+                    MCP Shadow Discovery detects Model Context Protocol (MCP) servers
+                    configured locally and those running as active processes.
+                </p>
+
+                <form method="POST">
+                    <button type="submit" class="btn btn-primary">Analyse</button>
+                </form>
+
+                {% if detected or possible %}
+                    <p class="loading mt-3">✔ System Analysis Completed</p>
+                {% endif %}
+            </div>
+
+        </div>
+
+        <!-- ================= TAB 2 ================= -->
+        <div class="tab-pane fade" id="results">
+
+            <div class="card p-3">
+
+                <h4>Detection Summary</h4>
+
+                <canvas id="pieChart" width="200" height="200"></canvas>
+
+                <script>
+                    const detectedCount = {{ detected|length }};
+                    const possibleCount = {{ possible|length }};
+
+                    const ctx = document.getElementById('pieChart').getContext('2d');
+                    new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: ['Detected', 'Possible'],
+                            datasets: [{
+                                data: [detectedCount, possibleCount],
+                                backgroundColor: ['#28a745', '#dc3545']
+                            }]
+                        }
+                    });
+                </script>
+
+            </div>
+
+            <div class="card p-3">
+                <h5>Servers</h5>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Source</th>
+                            <th>Expand</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for server in detected %}
+                        <tr>
+                            <td>{{ server.server_id }}</td>
+                            <td>Detected</td>
+                            <td>
+                                <button class="btn btn-sm btn-success"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#d{{ loop.index }}">
+                                    Analyse
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="collapse" id="d{{ loop.index }}">
+                            <td colspan="3">
+                                <pre>{{ server | tojson(indent=2) }}</pre>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                        {% for server in possible %}
+                        <tr>
+                            <td>{{ server.name }}</td>
+                            <td>Possible</td>
+                            <td>
+                                <button class="btn btn-sm btn-danger"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#p{{ loop.index }}">
+                                    Analyse
+                                </button>
+                            </td>
+                        </tr>
+                        <tr class="collapse" id="p{{ loop.index }}">
+                            <td colspan="3">
+                                <pre>{{ server | tojson(indent=2) }}</pre>
+                            </td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+                <form action="/export" method="POST">
+                    <textarea name="results" hidden>{{ results | tojson }}</textarea>
+                    <button class="btn btn-success">Export JSON</button>
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- ================= TAB 3 ================= -->
+        <div class="tab-pane fade" id="config">
+
+            <div class="card p-3">
+                <h4>Edit config.json</h4>
+
+                <form method="POST" action="/save_config">
+                    <textarea name="config_content">{{ config_content }}</textarea>
+                    <br><br>
+                    <button class="btn btn-primary">Save Configuration</button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- ================= TAB 4 ================= -->
+        <div class="tab-pane fade" id="advanced">
+
+            <div class="card p-3">
+                <h4>LLM Configuration</h4>
+
+                <form method="POST" action="/save_advanced">
+
+                    <div class="mb-3">
+                        <label>Gemini API Key</label>
+                        <input type="text" name="gemini_key" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Claude API Key</label>
+                        <input type="text" name="claude_key" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label>Ollama Cloud Key</label>
+                        <input type="text" name="ollama_key" class="form-control">
+                    </div>
+
+                    <button class="btn btn-primary">Save Advanced Settings</button>
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
