@@ -52,6 +52,14 @@ class ShadowDiscovery:
     def _parse_mcp_config(self, path: Path, client_name: str):
         try:
             if not path.exists():
+                self.results["possible_mcp_servers_detected"].append({
+                    "tool_name": tool_name,
+                    "detected_via": "Process/Filesystem Scan",
+                    "status": "Missing Configuration",
+                    "reason": f"Tool '{tool_name}' is present but not found in {client_name} config.",
+                    "executable_path": str(detected_binary_path), # Path where clawbot was found
+                    "suggested_action": "Add to mcpServers config to enable AI usage."
+                })
                 return
 
             with open(path, "rb") as f:
@@ -64,14 +72,14 @@ class ShadowDiscovery:
             if not value:
                 return
 
-            # Handle [[mcp_servers]] (list)
+
             if isinstance(value, list):
                 for item in value:
                     if not isinstance(item, dict):
                         continue
                     self._store_confirmed_server(item, path, client_name)
 
-            # Handle [mcp_servers.name] (dict)
+
             elif isinstance(value, dict):
                 for name, item in value.items():
                     if isinstance(item, dict):

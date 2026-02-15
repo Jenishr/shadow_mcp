@@ -7,36 +7,49 @@
       "clients": [
         {
           "name": "windsurf",
-          "exists_paths": ["~/.codeium"],
-          "config_paths": ["~/.codeium/windsurf/mcp_config.json"],
-          "skills_paths": ["~/.codeium/windsurf/skills"]
+          "exists_paths": [
+            "~/.codeium"
+          ],
+          "config_paths": [
+            "~/.codeium/windsurf/mcp_config.json"
+          ]
         },
         {
           "name": "cursor",
-          "exists_paths": ["~/.cursor"],
-          "config_paths": ["~/.cursor/mcp.json"],
-          "skills_paths": ["~/.cursor/skills"]
+          "exists_paths": [
+            "~/.cursor"
+          ],
+          "config_paths": [
+            "~/.cursor/mcp.json"
+          ]
         },
         {
           "name": "vscode",
-          "exists_paths": ["~/.vscode"],
+          "exists_paths": [
+            "~/.vscode"
+          ],
           "config_paths": [
             "~/Library/Application Support/Code/User/settings.json",
             "~/Library/Application Support/Code/User/mcp.json"
-          ],
-          "skills_paths": ["~/.copilot/skills"]
+          ]
         },
         {
           "name": "claude",
-          "exists_paths": ["~/Library/Application Support/Claude"],
-          "config_paths": ["~/Library/Application Support/Claude/claude_desktop_config.json"],
-          "skills_paths": []
+          "exists_paths": [
+            "~/Library/Application Support/Claude"
+          ],
+          "config_paths": [
+            "~/Library/Application Support/Claude/claude_desktop_config.json"
+          ]
         },
         {
           "name": "codex",
-          "exists_paths": ["~/.codex"],
-          "config_paths": ["~/.codex/config.toml"],
-          "skills_paths": ["~/.codex/skills"]
+          "exists_paths": [
+            "~/.codex"
+          ],
+          "config_paths": [
+            "~/.codex/config.toml"
+          ]
         }
       ]
     },
@@ -44,13 +57,21 @@
       "clients": [
         {
           "name": "windsurf",
-          "exists_paths": ["~/.codeium"],
-          "config_paths": ["~/.codeium/windsurf/mcp_config.json"],
-          "skills_paths": ["~/.codeium/windsurf/skills"]
+          "exists_paths": [
+            "~/.codeium"
+          ],
+          "config_paths": [
+            "~/.codeium/windsurf/mcp_config.json"
+          ]
         },
         {
           "name": "vscode",
-          "exists_paths": ["~/.vscode", "~/.config/Code","~/.vscode/extensions","~/.vscode/extensions/openai.chatgpt*"],
+          "exists_paths": [
+            "~/.vscode",
+            "~/.config/Code",
+            "~/.vscode/extensions",
+            "~/.vscode/extensions/openai.chatgpt*"
+          ],
           "config_paths": [
             "~/.config/Code - Insiders/User/settings.json",
             "~/.config/Code/User/mcp.json",
@@ -58,14 +79,94 @@
             "~/.vscode/codex_mcp.json",
             "~/.vscode/mcp.json",
             "~/.vscode/mcp.json"
-          ],
-          "skills_paths": ["~/.copilot/skills"]
+          ]
         },
         {
           "name": "codex",
-          "exists_paths": ["~/.codex"],
-          "config_paths": ["~/.codex/config.toml"],
-          "skills_paths": ["~/.codex/skills"]
+          "exists_paths": [
+            "~/.codex"
+          ],
+          "config_paths": [
+            "~/.codex/config.toml"
+          ]
+        },
+        {
+          "name": "windsurf",
+          "exists_paths": [
+            "~/.codeium"
+          ],
+          "config_paths": [
+            "~/.codeium/windsurf/mcp_config.json"
+          ]
+        },
+        {
+          "name": "cursor",
+          "exists_paths": [
+            "~/.cursor"
+          ],
+          "config_paths": [
+            "~/.cursor/mcp.json"
+          ]
+        },
+        {
+          "name": "claude code",
+          "exists_paths": [
+            "~/.claude"
+          ],
+          "config_paths": [
+            "~/.claude.json"
+          ]
+        },
+        {
+          "name": "gemini cli",
+          "exists_paths": [
+            "~/.gemini"
+          ],
+          "config_paths": [
+            "~/.gemini/settings.json"
+          ]
+        },
+        {
+          "name": "openclaw",
+          "exists_paths": [
+            "~/.clawdbot",
+            "~/.openclaw"
+          ],
+          "config_paths": []
+        },
+        {
+          "name": "kiro",
+          "exists_paths": [
+            "~/.kiro"
+          ],
+          "config_paths": [
+            "~/.kiro/settings/mcp.json"
+          ]
+        },
+        {
+          "name": "opencode",
+          "exists_paths": [
+            "~/.config/opencode"
+          ],
+          "config_paths": []
+        },
+        {
+          "name": "antigravity",
+          "exists_paths": [
+            "~/.gemini/antigravity"
+          ],
+          "config_paths": [
+            "~/.gemini/antigravity/mcp_config.json"
+          ]
+        },
+        {
+          "name": "antigravity",
+          "exists_paths": [
+            "~/.gemini/antigravity"
+          ],
+          "config_paths": [
+            "~/.gemini/antigravity/mcp_config.json"
+          ]
         }
       ]
     },
@@ -73,18 +174,24 @@
       "clients": [
         {
           "name": "claude",
-          "exists_paths": ["~/AppData/Roaming/Claude"],
-          "config_paths": ["~/AppData/Roaming/Claude/claude_desktop_config.json"],
-          "skills_paths": []
+          "exists_paths": [
+            "~/AppData/Roaming/Claude"
+          ],
+          "config_paths": [
+            "~/AppData/Roaming/Claude/claude_desktop_config.json"
+          ]
         },
         {
           "name": "vscode",
-          "exists_paths": ["~/.vscode", "~/.config/Code","~/.vscode/extensions"],
+          "exists_paths": [
+            "~/.vscode",
+            "~/.config/Code",
+            "~/.vscode/extensions"
+          ],
           "config_paths": [
             "~/AppData/Roaming/Code/User/settings.json",
             "~/AppData/Roaming/Code/User/mcp.json"
-          ],
-          "skills_paths": ["~/.copilot/skills"]
+          ]
         }
       ]
     }
